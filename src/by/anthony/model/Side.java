@@ -1,16 +1,16 @@
 package by.anthony.model;
 
 public enum Side {
-    CELL_X(100),
-    CELL_O(10);
+    PLAYER_X('X'),
+    PLAYER_O('O');
 
-    private final int value;
+    private final char value;
 
-    Side(int value) {
+    Side(char value) {
         this.value = value;
     }
 
-    public int getValue() {
+    public char getValue() {
         return value;
     }
 }

@@ -1,11 +1,11 @@
 package by.anthony;
 
-import by.anthony.model.GameTable;
+import by.anthony.model.GameRuler;
 
 public class Game {
 
     public static void main(String[] args) {
-        GameTable game = new GameTable();
+        GameRuler game = new GameRuler();
         game.play();
     }
 }
