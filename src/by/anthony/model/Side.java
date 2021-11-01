@@ -2,7 +2,8 @@ package by.anthony.model;
 
 public enum Side {
     PLAYER_X('X'),
-    PLAYER_O('O');
+    PLAYER_O('O'),
+    CELL_EMPTY('\u0023');
 
     private final char value;
 
@@ -13,4 +14,5 @@ public enum Side {
     public char getValue() {
         return value;
     }
+
 }
