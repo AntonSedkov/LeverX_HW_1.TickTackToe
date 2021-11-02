@@ -3,6 +3,8 @@ package by.anthony.model;
 import java.util.Arrays;
 
 public class Table {
+    public static final char CELL_EMPTY = '\u0023';
+
     private final char[][] values;
     private final int size;
 
@@ -51,7 +53,7 @@ public class Table {
     private void initTable() {
         for (int row = 0; row < size; row++) {
             for (int column = 0; column < size; column++) {
-                values[row][column] = Side.CELL_EMPTY.getValue();
+                values[row][column] = CELL_EMPTY;
             }
         }
     }

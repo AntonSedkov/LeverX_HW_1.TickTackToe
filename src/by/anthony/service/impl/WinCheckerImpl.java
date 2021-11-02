@@ -1,6 +1,5 @@
 package by.anthony.service.impl;
 
-import by.anthony.model.Side;
 import by.anthony.model.Table;
 import by.anthony.service.WinChecker;
 
@@ -40,7 +39,7 @@ public class WinCheckerImpl implements WinChecker {
         char[][] table = gameTable.getValues();
         for (int row = 0; row < table.length; row++) {
             for (int col = 0; col < table.length; col++) {
-                if (table[row][col] == Side.CELL_EMPTY.getValue()) {
+                if (table[row][col] == Table.CELL_EMPTY) {
                     return false;
                 }
             }
@@ -50,7 +49,7 @@ public class WinCheckerImpl implements WinChecker {
 
     private boolean checkWinColumn(char[][] table, int row, int column) {
         boolean isColWin = false;
-        if (table[row][column] == Side.CELL_EMPTY.getValue()) {
+        if (table[row][column] == Table.CELL_EMPTY) {
             return isColWin;
         }
         while (column > 0) {
@@ -65,7 +64,7 @@ public class WinCheckerImpl implements WinChecker {
 
     private boolean checkWinRow(char[][] table, int row, int column) {
         boolean isRowWin = false;
-        if (table[row][column] == Side.CELL_EMPTY.getValue()) {
+        if (table[row][column] == Table.CELL_EMPTY) {
             return isRowWin;
         }
         while (row > 0) {
@@ -82,7 +81,7 @@ public class WinCheckerImpl implements WinChecker {
         boolean result = false;
         int index = 0;
         while (index < tableSize - 1) {
-            if (table[index][index] == Side.CELL_EMPTY.getValue()) {
+            if (table[index][index] == Table.CELL_EMPTY) {
                 result = false;
                 break;
             }
@@ -99,7 +98,7 @@ public class WinCheckerImpl implements WinChecker {
         boolean result = false;
         int index = 0;
         while (index < tableSize - 1) {
-            if (table[index][tableSize - 1 - index] == Side.CELL_EMPTY.getValue()) {
+            if (table[index][tableSize - 1 - index] == Table.CELL_EMPTY) {
                 result = false;
                 break;
             }

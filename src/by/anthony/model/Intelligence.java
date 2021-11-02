@@ -1,5 +1,5 @@
 package by.anthony.model;
 
-public enum Opponent {
+public enum Intelligence {
     HUMAN, BOT
 }
