@@ -66,10 +66,18 @@ public class GameRuler {
     }
 
     private int defineSize() {
-        int size;
-        System.out.println("Enter the size of table");
-        checkInteger();
-        size = scanner.nextInt();
+        int size = 3;
+        System.out.println("Enter the size of table (greater than 1)");
+        boolean incorrect = true;
+        while (incorrect) {
+            checkInteger();
+            size = scanner.nextInt();
+            if (size < 2) {
+                System.out.println("Sorry, you has entered incorrect integer");
+            } else {
+                incorrect = false;
+            }
+        }
         return size;
     }
 
