@@ -5,37 +5,32 @@ import by.anthony.model.Player;
 import by.anthony.model.Side;
 import by.anthony.model.Table;
 import by.anthony.service.impl.BotStepImpl;
+import by.anthony.service.impl.GameSpeakerImpl;
 import by.anthony.service.impl.HumanStepImpl;
 import by.anthony.service.impl.WinCheckerImpl;
 
 import java.util.Scanner;
 
 public class GameRuler {
-    private final Scanner scanner;
-
-    public GameRuler() {
-        scanner = new Scanner(System.in);
-    }
 
     public void play() {
-        try {
+        try (Scanner scanner = new Scanner(System.in)) {
+            GameSpeaker gameSpeaker = new GameSpeakerImpl();
             do {
-                int size = defineSize();
+                int size = gameSpeaker.defineSize(scanner);
                 Table table = new Table(size);
                 System.out.println(table.toString());
 
-                Intelligence intelligence = chooseOpponent();
+                Intelligence intelligence = gameSpeaker.chooseOpponent(scanner);
                 Player secondGamer = new Player(Side.PLAYER_O, intelligence);
 
-                action(secondGamer, table);
+                action(secondGamer, table, scanner);
 
-            } while (playAgain());
-        } finally {
-            destroy();
+            } while (gameSpeaker.isPlayAgain(scanner));
         }
     }
 
-    private void action(Player secondGamer, Table table) {
+    private void action(Player secondGamer, Table table, Scanner scanner) {
         WinChecker winChecker = new WinCheckerImpl();
         int size = table.getSize();
         boolean gameOver = false;
@@ -63,70 +58,6 @@ public class GameRuler {
                 }
             }
         }
-    }
-
-    private int defineSize() {
-        int size = 3;
-        System.out.println("Enter the size of table (greater than 1)");
-        boolean incorrect = true;
-        while (incorrect) {
-            checkInteger();
-            size = scanner.nextInt();
-            if (size < 2) {
-                System.out.println("Sorry, you has entered incorrect integer");
-            } else {
-                incorrect = false;
-            }
-        }
-        return size;
-    }
-
-    private void checkInteger() {
-        while (!scanner.hasNextInt()) {
-            System.out.println("Sorry, you has entered not an integer");
-            scanner.next();
-        }
-    }
-
-    private Intelligence chooseOpponent() {
-        boolean incorrect = true;
-        Intelligence intelligence = Intelligence.HUMAN;
-        while (incorrect) {
-            System.out.println("Enter the opponent's number:\n 1 - Human;\n 2 - Bot");
-            checkInteger();
-            int opponent = scanner.nextInt();
-            switch (opponent) {
-                case 1 -> incorrect = false;
-                case 2 -> {
-                    intelligence = Intelligence.BOT;
-                    incorrect = false;
-                }
-                default -> System.out.println("Wrong opponent's number");
-            }
-        }
-        return intelligence;
-    }
-
-    private boolean playAgain() {
-        boolean incorrect = true;
-        boolean nextGame = false;
-        while (incorrect) {
-            System.out.println("Do you wish start new game? (write Y/N)");
-            char isAgain = scanner.next().charAt(0);
-            switch (isAgain) {
-                case 'Y', 'y' -> {
-                    nextGame = true;
-                    incorrect = false;
-                }
-                case 'N', 'n' -> incorrect = false;
-                default -> System.out.println("Wrong answer, please, write Y or N");
-            }
-        }
-        return nextGame;
-    }
-
-    private void destroy() {
-        scanner.close();
     }
 
 }
