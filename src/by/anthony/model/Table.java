@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class Table {
     public static final char CELL_EMPTY = '\u0023';
+    public static final int MIN_TABLE_SIZE = 2;
 
     private final char[][] values;
     private final int size;

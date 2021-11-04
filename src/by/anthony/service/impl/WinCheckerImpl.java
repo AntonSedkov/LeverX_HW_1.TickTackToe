@@ -5,9 +5,6 @@ import by.anthony.service.WinChecker;
 
 public class WinCheckerImpl implements WinChecker {
 
-    public WinCheckerImpl() {
-    }
-
     @Override
     public boolean checkWin(Table gameTable) {
         char[][] table = gameTable.getValues();

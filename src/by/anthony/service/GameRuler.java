@@ -50,7 +50,8 @@ public class GameRuler {
                     System.out.println(side.toString() + " is Win. Congratulations!!!");
                     break;
                 }
-                gameOver = (step++ > (size / 2 + 1)) &&
+                int stepsForDraw = size / 2 + 1;
+                gameOver = (step++ > stepsForDraw) &&
                         winChecker.checkDraw(table);
                 if (gameOver) {
                     System.out.println("This is draw!!!");

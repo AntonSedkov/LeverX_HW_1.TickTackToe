@@ -1,6 +1,7 @@
 package by.anthony.service.impl;
 
 import by.anthony.model.Intelligence;
+import by.anthony.model.Table;
 import by.anthony.service.GameSpeaker;
 
 import java.util.Scanner;
@@ -9,13 +10,13 @@ public class GameSpeakerImpl implements GameSpeaker {
 
     @Override
     public int defineSize(Scanner scanner) {
-        int size = 3;
+        int size = Table.MIN_TABLE_SIZE;
         System.out.println("Enter the size of table (greater than 1)");
         boolean incorrect = true;
         while (incorrect) {
             GameSpeaker.checkInteger(scanner);
             size = scanner.nextInt();
-            if (size < 2) {
+            if (size < Table.MIN_TABLE_SIZE) {
                 System.out.println("Sorry, you has entered incorrect integer");
             } else {
                 incorrect = false;
